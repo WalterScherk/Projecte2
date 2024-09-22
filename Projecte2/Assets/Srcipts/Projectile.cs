@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject); // También destruye el proyectil
+            Destroy(gameObject); // Destroy also 
         }
     }
 

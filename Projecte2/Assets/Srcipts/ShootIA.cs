@@ -9,11 +9,11 @@ public class ShootIA : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Shoot());
+        StartCoroutine(Shoot());//with this i call the iteration
     }
 
-    // Update is called once per frame
-    IEnumerator Shoot()
+
+    IEnumerator Shoot()//With this the proyectile repeat the shoot 
     {
         while(true)
         {

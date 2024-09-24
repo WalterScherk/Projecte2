@@ -19,8 +19,15 @@ public class Projectile : MonoBehaviour
     {
         Vector2 directionToPlayer= (player.position - transform.position).normalized;
         controller.velocity=directionToPlayer*speed;
-        
+        Vector2 directionToEnemy = (transform.position - player.position).normalized;
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            controller.velocity = directionToEnemy * speed;
+
+            Debug.Log("Se ha presionado la barra espaciadora");
+            // Aquí puedes agregar lo que quieres que pase cuando se presione el espacio
+        }
 
     }
 

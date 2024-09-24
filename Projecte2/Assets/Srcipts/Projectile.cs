@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    private bool parried = false;
     [SerializeField] private float speed;
     private Transform player;
     private Rigidbody2D controller;
@@ -13,6 +14,7 @@ public class Projectile : MonoBehaviour
         player = FindObjectOfType<PlayerCtrl>().transform;
         controller = GetComponent < Rigidbody2D>();
         LaunchProjectile();
+        StartCoroutine(SelfDelete());
     }
     //Calculate the distance between de projectile and the player creating a vector
     private void LaunchProjectile()
@@ -31,10 +33,19 @@ public class Projectile : MonoBehaviour
         {
             Destroy(gameObject); 
         }
-        else
+        else if (collision.tag == "parry" && parried == false)
         {
-            Destroy(gameObject); // Destroy also 
+            parried = true;
+            controller.velocity *= -1;
+            Debug.Log("parry");
         }
+        
     }
 
+
+    IEnumerator SelfDelete() {
+
+        yield return new WaitForSeconds(2);
+        Destroy(gameObject);
+    }
 }

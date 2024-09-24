@@ -13,13 +13,18 @@ public class ShootIA : MonoBehaviour
     }
 
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "playerBullet") {
+
+            Destroy(gameObject);
+        }
+    }
+
     IEnumerator Shoot()//With this the proyectile repeat the shoot 
     {
-        while(true)
-        {
-            yield return new WaitForSeconds(timeBetweenShoots);
-            Instantiate(ProjectilePrefab, transform.position, Quaternion.identity);
-        }
-        
+        yield return new WaitForSeconds(timeBetweenShoots);
+        Instantiate(ProjectilePrefab, transform.position, Quaternion.identity);
+        StartCoroutine(Shoot());
     }
 }
